@@ -1,2 +1,2 @@
 # mr_twit
-Kind if twitter application POC
+Kind of twitter application POC
