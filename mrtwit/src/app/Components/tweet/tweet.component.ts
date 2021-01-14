@@ -62,19 +62,6 @@ console.log("data");
 
   createTweetControl()
   {
-    this.tweets = [];
-    var tweetsss =new Tweet();
-    tweetsss.tweetId = "123";
-    tweetsss.content = "hi";
-    tweetsss.imageUrl = "hiurl";
-    tweetsss.likes = 9;
-    tweetsss.replies =[];
-    tweetsss.replies .push("hello");
-    tweetsss.userId= "userdiofprakash";
-    this.tweets.push(
-tweetsss
-    );
-
       
     this.tweets.forEach(element => {
       var arr = <FormArray>this.mainForm.get("tweetsArray");
