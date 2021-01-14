@@ -1,48 +1,53 @@
-<p>mainpage-component works!</p>
+
 <button *ngIf="!showForm()" (click)="getData()">Load Form</button>
 <form [formGroup]="mainForm" (ngSubmit)="processData(mainForm)">
-
-    <table *ngIf="showForm()">
-        <tr>
-
-            <td>Name:<label>
-
-                    <input type="text" formControlName="name">
-                </label></td>
-        </tr>
-
-
-
-        <tr>
-
-            <td>
-                <label>
-                    ProfileId:
-                    <input type="text" formControlName="profileId">
-                </label>
-            </td>
-
-        </tr>
-        <tr>
-            <td><label>
-                    Gender:
-                    <input type="text" formControlName="gender">
-                </label></td>
-        </tr>
-        <td>
+    <div *ngIf="showForm()">
+        <table>
             <tr>
+
+                <td>Name:<label>
+
+                        <input type="text" formControlName="name">
+                    </label></td>
+            </tr>
+
+
+
+            <tr>
+
                 <td>
                     <label>
-                        Image:
-                        <input type="text" formControlName="profileImage">
+                        ProfileId:
+                        <input type="text" formControlName="profileId">
                     </label>
                 </td>
 
             </tr>
+            <tr>
+                <td><label>
+                        Gender:
+                        <input type="text" formControlName="gender">
+                    </label></td>
+            </tr>
+            <td>
+                <tr>
+                    <td>
+                        <label>
+                            Image:
+                            <input type="text" formControlName="profileImage">
+                        </label>
+                    </td>
+
+                </tr>
 
 
-            <button type="submit">Submit Form</button>
-    </table>
-   
-
+                <button type="submit">Submit Form</button>
+        </table>
+        <div *ngIf='showTweetsContent()'>
+            <!-- <div *ngFor="let v of tweets">
+                <app-tweet [tweets]='tweets' [tweetId]='v.tweetId'> </app-tweet>
+            </div> -->
+            <app-tweet [tweets]='tweets'> </app-tweet>
+        </div>
+    </div>
 </form>

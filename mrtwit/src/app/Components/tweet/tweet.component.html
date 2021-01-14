@@ -1,13 +1,16 @@
-<p>mainpage-component works!</p>
-<button *ngIf="!showForm()" (click)="getData()">Load Form</button>
-<form [formGroup]="mainForm" (ngSubmit)="processData(mainForm)">
 
-    <table *ngIf="showForm()">
+<form [formGroup]="mainForm" (ngSubmit)="processData(mainForm.value)">
+
+   
+<div *ngIf="showForm()" formArrayName='tweetsArray'>
+    <div  *ngFor = "let v of tweets;let j = index;">
+        <div [formGroupName]="j">
+    <table >
         <tr>
+         
+            <td> Name:<label>
 
-            <td>Name:<label>
-
-                    <input type="text" formControlName="userId">
+                    <input type="text" formControlName="tweetId">
                 </label></td>
         </tr>
 
@@ -26,7 +29,7 @@
         <tr>
             <td><label>
                     Image:
-                    <input type="text" formControlName="image">
+                    <input type="text" formControlName="imageUrl">
                 </label></td>
         </tr>
         <td>
@@ -49,9 +52,16 @@
 
             </tr>
 
-
-            <button type="submit">Submit Form</button>
     </table>
-   
+    <button type="submit">Tweet</button>
+</div>
 
+</div>
+</div> 
 </form>
+
+
+
+
+  
+   

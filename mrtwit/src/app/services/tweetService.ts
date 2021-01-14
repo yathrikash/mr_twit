@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { UserProfile } from '../models/user/UserProfile';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ProfileInfo } from '../models/user/ProfileInfo';
+
+import { Tweet } from '../models/Tweet/tweet';
 
 @Injectable({providedIn:'root'})
 export  class TweetService 
@@ -11,16 +10,48 @@ export  class TweetService
 
 constructor (private http:HttpClient)
 {
-    console.log("inside ctor profile");
-
 }
 
- getProfile(){
-     console.log("inside get profile");
-var url = environment.mrtwit_api_base_url + 'tweet/3a6b301d-f14c-418c-b307-632a35656582'
+ getTweetsOfUser(userId){
+     console.log("inside getTweetsOfUser,",userId);
+var url = environment.mrtwit_api_base_url + 'tweet/user/' + userId;
 var response =  this.http.get(url);
 return response;
 }
 
+getTweetByTweetIds(tweetIds:string[]){
+    console.log("inside getTweetsByTweetIds,");
+var url = environment.mrtwit_api_base_url + 'tweet/tweets';
+
+var response =  this.http.put(url,tweetIds);
+return response;
+}
+
+getTweet(tweetId){
+    console.log("inside getTweet ,",tweetId);
+var url = environment.mrtwit_api_base_url + 'tweet/' + tweetId;
+var response =  this.http.get(url);
+return response;
+}
+
+
+
+
+replyTweet(tweetId:string,tweetInfo : Tweet){
+    console.log("inside reply ,",tweetId);
+
+var url = environment.mrtwit_api_base_url + 'tweet/reply/' + tweetId;
+var response =  this.http.put(url,tweetInfo);
+return response;
+}
+
+
+likeTweet(tweetId:string){
+    console.log("inside like  ,",tweetId);
+
+var url = environment.mrtwit_api_base_url + 'tweet/like/' + tweetId;
+var response =  this.http.put(url,"");
+return response;
+}
 
 }

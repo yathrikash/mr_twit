@@ -7,10 +7,10 @@
       <a class="nav-link"  [routerLink]="['/tweetpage']">Tweet</a>
     </li>
     
-    <!--<li class="nav-item">
-      <a class="nav-link"  [routerLink]="['/signout']">Sign Out</a>
+    <li *ngIf = "!isSiggnedIn()" class="nav-item">
+      <a class="nav-link"  [routerLink]="['/signin']">Sign In</a>
     </li>
-    <li class="nav-item">
+    <!-- <li class="nav-item">
       <a class="nav-link disabled"  [routerLink]="['/home']">Profile</a>
     </li> -->
   </ul>

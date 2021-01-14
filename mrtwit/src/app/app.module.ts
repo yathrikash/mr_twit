@@ -7,13 +7,15 @@ import { MainpageComponent } from './Components/mainpage-component/mainpage-comp
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { TweetComponent } from './Components/tweet/tweet.component';
+import { SigninandupComponent } from './Components/signinandup/signinandup.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainpageComponent,
-    TweetComponent
+    TweetComponent,
+    SigninandupComponent
   ],
   imports: [
     BrowserModule,

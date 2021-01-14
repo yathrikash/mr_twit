@@ -1,0 +1,82 @@
+<ul class="nav">
+    <li *ngIf="isSignUpActive()" class="nav-item">
+      <a class="nav-link" [routerLink]="" (click)="showSignIn(false)" >SignIn</a>
+    </li>
+    <li *ngIf="!isSignUpActive()" class="nav-item">
+      <a class="nav-link" [routerLink]="" (click) = "showSignIn(true)" >SignUp</a>
+    </li>
+  </ul>
+<form *ngIf="isSignUpActive()" [formGroup]="mainForm" (ngSubmit)="processSignUp()">
+    <div >
+        <table>
+            <tr>
+                <td>UserName:<label>
+
+                        <input type="text" formControlName="userName">
+                    </label></td>
+            </tr>
+
+
+
+            <tr>
+
+                <td>
+                    <label>
+                        Password:
+                        <input type="text" formControlName="password">
+                    </label>
+                </td>
+
+            </tr>
+            <tr>
+                <td><label>
+                        First Name:
+                        <input type="text" formControlName="name">
+                    </label></td>
+            </tr>
+            <td>
+                <tr>
+                    <td>
+                        <label>
+                            Gender:
+                            <input type="text" formControlName="gender">
+                        </label>
+                    </td>
+
+                </tr>
+
+                <button type="submit">Submit Form</button>
+        </table>
+     
+    </div>
+
+</form>
+
+************************************************************************
+<form *ngIf="!isSignUpActive()" [formGroup]="mainForm" (ngSubmit)="processSignIn()">
+    <div *ngIf="showForm()">
+        <table>
+            <tr>
+                <td>UserName:<label>
+
+                        <input type="text" formControlName="userName">
+                    </label></td>
+            </tr>
+
+            <tr>
+
+                <td>
+                    <label>
+                        Password:
+                        <input type="text" formControlName="password">
+                    </label>
+                </td>
+
+            </tr>
+
+                <button type="submit">Submit Form</button>
+        </table>
+     
+    </div>
+
+</form>
