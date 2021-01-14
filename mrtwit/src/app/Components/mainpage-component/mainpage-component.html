@@ -1,0 +1,48 @@
+<p>mainpage-component works!</p>
+<button *ngIf="!showForm()" (click)="getData()">Load Form</button>
+<form [formGroup]="mainForm" (ngSubmit)="processData(mainForm)">
+
+    <table *ngIf="showForm()">
+        <tr>
+
+            <td>Name:<label>
+
+                    <input type="text" formControlName="name">
+                </label></td>
+        </tr>
+
+
+
+        <tr>
+
+            <td>
+                <label>
+                    ProfileId:
+                    <input type="text" formControlName="profileId">
+                </label>
+            </td>
+
+        </tr>
+        <tr>
+            <td><label>
+                    Gender:
+                    <input type="text" formControlName="gender">
+                </label></td>
+        </tr>
+        <td>
+            <tr>
+                <td>
+                    <label>
+                        Image:
+                        <input type="text" formControlName="profileImage">
+                    </label>
+                </td>
+
+            </tr>
+
+
+            <button type="submit">Submit Form</button>
+    </table>
+   
+
+</form>

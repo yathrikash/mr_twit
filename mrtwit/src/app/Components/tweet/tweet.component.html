@@ -1,0 +1,57 @@
+<p>mainpage-component works!</p>
+<button *ngIf="!showForm()" (click)="getData()">Load Form</button>
+<form [formGroup]="mainForm" (ngSubmit)="processData(mainForm)">
+
+    <table *ngIf="showForm()">
+        <tr>
+
+            <td>Name:<label>
+
+                    <input type="text" formControlName="userId">
+                </label></td>
+        </tr>
+
+
+
+        <tr>
+
+            <td>
+                <label>
+                    Tweet Content:
+                    <input type="text" formControlName="content">
+                </label>
+            </td>
+
+        </tr>
+        <tr>
+            <td><label>
+                    Image:
+                    <input type="text" formControlName="image">
+                </label></td>
+        </tr>
+        <td>
+            <tr>
+                <td>
+                    <label>
+                        Likes:
+                        <input type="text" formControlName="likes">
+                    </label>
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <label>
+                        Reply:
+                        <input type="text" formControlName="replies">
+                    </label>
+                </td>
+
+            </tr>
+
+
+            <button type="submit">Submit Form</button>
+    </table>
+   
+
+</form>
