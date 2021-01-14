@@ -11,6 +11,19 @@ import { environment } from 'src/environments/environment';
 })
 export class TweetComponent implements OnInit {
 
+
+  data:Tweet;
+  fb:FormBuilder;
+  formArrayInfo:FormArray;
+  mainForm:FormGroup;
+  
+  @Input()
+  tweetId:string;
+  @Input()
+  tweets:Tweet[];
+showContent : boolean = false;
+  
+
   constructor(private service: TweetService) {
     this.fb = new FormBuilder();
     this.mainForm = this.fb.group({
@@ -32,18 +45,7 @@ export class TweetComponent implements OnInit {
     else
     this.getData();
   }
-data:Tweet;
-fb:FormBuilder;
-formArrayInfo:FormArray;
-mainForm:FormGroup;
 
-@Input()
-tweetId:string;
-@Input()
-tweets:Tweet[];
-
-
-showContent : boolean = false;
   getData()
   {
     console.log("inside getdata tweetid: " + this.tweetId);
@@ -67,17 +69,13 @@ console.log("data");
       var arr = <FormArray>this.mainForm.get("tweetsArray");
       arr.push(
         this.fb.group({
-          tweetId:[element.tweetId],
-          userId:[element.userId],
-          content:[element.content],
-          imageUrl:[element.imageUrl],
           likes:[element.likes],
           replies:[element.replies]
         }));
       this.showContent = true;
-      console.log(this.mainForm.value); 
     });
-this.formArrayInfo = <FormArray>this.mainForm.get("tweetsArray");
+
+
 console.log(this.formArrayInfo);
   }
 
@@ -87,7 +85,18 @@ console.log(this.formArrayInfo);
   }
   processData(event)
   {
+    
     console.log("tweet:",event);
+  }
+  likeTweet(v:Tweet)
+  {
+    v.likes += 1;
+    this.service.likeTweet(v.tweetId).subscribe();
+  }
+
+  replyTweet(v:Tweet,content)
+  {
+    
   }
 
 }

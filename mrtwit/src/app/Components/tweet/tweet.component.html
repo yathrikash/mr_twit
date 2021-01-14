@@ -1,67 +1,49 @@
-
 <form [formGroup]="mainForm" (ngSubmit)="processData(mainForm.value)">
 
-   
-<div *ngIf="showForm()" formArrayName='tweetsArray'>
-    <div  *ngFor = "let v of tweets;let j = index;">
-        <div [formGroupName]="j">
-    <table >
-        <tr>
-         
-            <td> Name:<label>
 
-                    <input type="text" formControlName="tweetId">
-                </label></td>
-        </tr>
+    <div *ngIf="showForm()" formArrayName='tweetsArray'>
+        <div *ngFor="let v of tweets;let j = index;">
+            <div [formGroupName]="j">
+                <table>
+                    <tr>
 
+                        <td> @{{v.userId}}
+                           
+                        </td>
+                    </tr>
+                    <tr>
 
+                        <td>
+                                {{v.content}}
+                        </td>
 
-        <tr>
+                    </tr>
+                    <tr>
+                        <td>
+                            <img src='{{v.imageUrl}}' alt="image">
+                        </td>
+                    </tr>
+                    <td>
+                        <tr>
+                            <td>
+                                    Likes:{{v.likes}}
+                                    <img src="assets/images/like.jpg" (click) ="likeTweet(v)"/>
+                            </td>
 
-            <td>
-                <label>
-                    Tweet Content:
-                    <input type="text" formControlName="content">
-                </label>
-            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                    Reply:
+                                    <label *ngFor = "let r of v.replies;">{{r}}</label>
+                                    <input type="text" formControlName="replies">
+                            </td>
 
-        </tr>
-        <tr>
-            <td><label>
-                    Image:
-                    <input type="text" formControlName="imageUrl">
-                </label></td>
-        </tr>
-        <td>
-            <tr>
-                <td>
-                    <label>
-                        Likes:
-                        <input type="text" formControlName="likes">
-                    </label>
-                </td>
+                        </tr>
 
-            </tr>
-            <tr>
-                <td>
-                    <label>
-                        Reply:
-                        <input type="text" formControlName="replies">
-                    </label>
-                </td>
+                </table>
+                
+            </div>
 
-            </tr>
-
-    </table>
-    <button type="submit">Tweet</button>
-</div>
-
-</div>
-</div> 
+        </div>
+    </div>
 </form>
-
-
-
-
-  
-   

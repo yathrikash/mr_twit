@@ -48,7 +48,6 @@ return response;
 
 likeTweet(tweetId:string){
     console.log("inside like  ,",tweetId);
-
 var url = environment.mrtwit_api_base_url + 'tweet/like/' + tweetId;
 var response =  this.http.put(url,"");
 return response;
