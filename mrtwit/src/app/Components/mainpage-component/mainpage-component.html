@@ -1,53 +1,41 @@
 
-<button *ngIf="!showForm()" (click)="getData()">Load Form</button>
 <form [formGroup]="mainForm" (ngSubmit)="processData(mainForm)">
     <div *ngIf="showForm()">
         <table>
             <tr>
 
-                <td>Name:<label>
-
-                        <input type="text" formControlName="name">
+                <td>User:<label>
                     </label></td>
             </tr>
-
-
-
-            <tr>
-
-                <td>
-                    <label>
-                        ProfileId:
-                        <input type="text" formControlName="profileId">
-                    </label>
-                </td>
-
-            </tr>
-            <tr>
-                <td><label>
-                        Gender:
-                        <input type="text" formControlName="gender">
-                    </label></td>
-            </tr>
+          
             <td>
                 <tr>
                     <td>
                         <label>
-                            Image:
-                            <input type="text" formControlName="profileImage">
+                            
+                            <img  src='assets/images/{{data.profileImage}}' alt="image">
+                            {{data.name}}(@{{currentUser}})
+
                         </label>
                     </td>
 
                 </tr>
-
-
-                <button type="submit">Submit Form</button>
         </table>
+        <br><br>
+        <a (click) = "getFeeds()"   [routerLink]="">Back to Feeds:</a>
+        <br><br>AvailableUsers:<br>
+                <div *ngIf="showUsersInfo()">
+       
+          <div *ngFor="let user of availableUsers;">
+                <a (click) = "getTweets(user)"   [routerLink]="">{{user}}</a>
+                ===><a (click) = "addFollowing(user)"   [routerLink]="">Follow</a>
+          </div>
+          </div>
+
+          <br><br>TweetsFrom your Feed:<br><br>
         <div *ngIf='showTweetsContent()'>
-            <!-- <div *ngFor="let v of tweets">
-                <app-tweet [tweets]='tweets' [tweetId]='v.tweetId'> </app-tweet>
-            </div> -->
-            <app-tweet [tweets]='tweets'> </app-tweet>
+           
+            <app-tweet [tweets]='tweets.slice().reverse()' (onUserClicked)="getTweets($event.value)" (onNewTweet)="getFeeds()"> </app-tweet>
         </div>
     </div>
 </form>

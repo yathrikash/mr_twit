@@ -16,7 +16,7 @@ constructor (private http:HttpClient)
 }
 
 getFeeds(userId:string){
-console.log("inside get feeds");
+console.log("inside get feeds",userId);
 var url = environment.mrtwit_api_base_url + 'feed/' + userId;
 var response =  this.http.get(url);
 return response;

@@ -1,26 +1,54 @@
 <form [formGroup]="mainForm" (ngSubmit)="processData(mainForm.value)">
 
+    <table > 
+        <tr>
 
+
+            <td>
+                <!-- <input type="text"  #tweetContent placeholder="Share your thoughts here!" > -->
+                <textarea  #tweetContent placeholder="Share your thoughts here!"></textarea>
+            </td>
+            <br>
+            <br>
+            <img  src='{{fileSelected}}' height="200" width="200"> <br/>
+            <input type='file' #tweetImageUrl  (change)="handleFileInput($event.target.files)" >
+
+        </tr>
+        <tr>
+            
+            <td style="display: inline;">
+                <button (click)="postTweet(tweetContent,tweetImageUrl)" >Tweet</button>
+                <!-- <img  *ngIf="v.imageUrl != null" src='assets/images/{{v.imageUrl}}' alt="image"> -->
+            </td>
+        </tr>
+       
+
+    </table>
     <div *ngIf="showForm()" formArrayName='tweetsArray'>
         <div *ngFor="let v of tweets;let j = index;">
             <div [formGroupName]="j">
-                <table>
+                <br>
+                           <br><br>
+                           <br>
+                <table > 
                     <tr>
 
-                        <td> @{{v.userId}}
+                 <a [routerLink]=""  (click)="userClicket(v.userId)">@{{v.userId}}</a> 
+                           <br>
+                           <br>
                            
-                        </td>
-                    </tr>
                     <tr>
 
                         <td>
                                 {{v.content}}
                         </td>
-
+                        <br>
+                        <br>
                     </tr>
                     <tr>
-                        <td>
-                            <img src='{{v.imageUrl}}' alt="image">
+                        
+                        <td style="display: inline;">
+                            <img   *ngIf="v.imageUrl != null" src='assets/images/{{v.imageUrl}}' alt="image">
                         </td>
                     </tr>
                     <td>
@@ -34,8 +62,12 @@
                         <tr>
                             <td>
                                     Reply:
-                                    <label *ngFor = "let r of v.replies;">{{r}}</label>
-                                    <input type="text" formControlName="replies">
+                                    <label *ngFor = "let r of v.replies;">{{r}}<br></label>
+                                    <br>
+                                    <br>
+                                    <input type="text" #replytext  formControlName="reply">
+                                    <button (click)="replyTweet(v,replytext)" >Reply</button>
+                                    
                             </td>
 
                         </tr>

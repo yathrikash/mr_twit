@@ -19,7 +19,7 @@ export class SigninandupComponent implements OnInit {
 this.fb = new FormBuilder();
 
   }
-
+  errorMessage :string ="";
   userName:string;
   password:string;
   name:string;
@@ -38,11 +38,11 @@ password:[this.password],
 name:[this.name],
 gender:[this.gender],
 });
-// this.mainForm.addControl("userName",new FormControl(''));
-// this.mainForm.addControl("hashedPassword",new FormControl(''));
-// this.mainForm.addControl("name",new FormControl(''));
-// this.mainForm.addControl("gender",new FormControl(''));
-// this.mainForm.addControl("password",new FormControl(''));
+ this.mainForm.addControl("userName",new FormControl(''));
+ this.mainForm.addControl("password",new FormControl(''));
+this.mainForm.addControl("suname",new FormControl(''));
+this.mainForm.addControl("suuserName",new FormControl(''));
+this.mainForm.addControl("supassword",new FormControl(''));
 this.showFormContent = true;
   }
 mainForm:FormGroup;
@@ -60,28 +60,48 @@ this.isSignUp = val;
 
   processSignIn()
   {
-    console.log(this.userProfileInfo);
+    this.userName = this.mainForm.get('userName').value;
+    this.password = this.mainForm.get('password').value;
+    
     var info = new SignIn();
     info.userName = this.userName;
     info.password = this.password;
     info.device = "Chrome_windows";
-
+    console.log(info);
     this.userServ.signIn(info).subscribe(x=>{
+      console.log('session',x);
  this.userServ.loggedInUser = x as Session;
+ if(this.userServ.loggedInUser.authKey == "" || this.userServ.loggedInUser.authKey == null ||
+ this.userServ.loggedInUser.authKey  == undefined )
+ {
+  this.errorMessage = "Invalid username or password.";
+
+ }
+ else
+ this.route.navigate(['/mainpage']);
     });
     
-    this.route.navigate(['/mainpage']);
   }
   
   processSignUp()
   {
     
+    this.userName = this.mainForm.get('suuserName').value;
+    this.password = this.mainForm.get('supassword').value;
+    this.name  = this.mainForm.get('suname').value;
+
+
+
     this.userProfileInfo.userInfo.userName = this.userName;
     this.userProfileInfo.userInfo.hashedPassword= this.password;
     this.userProfileInfo.profileInfo.name= this.name;
-    this.userProfileInfo.profileInfo.gender= this.gender;
+    this.userProfileInfo.profileInfo.gender= 0;
     console.log(this.userProfileInfo);
-    this.userServ.addUser(this.userProfileInfo);
+    this.userServ.addUser(this.userProfileInfo).subscribe();
+
+    this.mainForm.get('userName').setValue(this.userName);
+     this.mainForm.get('password').setValue(this.password);
+
     this.processSignIn();
     this.route.navigate(['/mainpage']);
   }

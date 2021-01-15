@@ -12,7 +12,7 @@
             <tr>
                 <td>UserName:<label>
 
-                        <input type="text" formControlName="userName">
+                        <input type="text" formControlName="suuserName">
                     </label></td>
             </tr>
 
@@ -23,7 +23,7 @@
                 <td>
                     <label>
                         Password:
-                        <input type="text" formControlName="password">
+                        <input type="text" formControlName="supassword">
                     </label>
                 </td>
 
@@ -31,19 +31,11 @@
             <tr>
                 <td><label>
                         First Name:
-                        <input type="text" formControlName="name">
+                        <input type="text" formControlName="suname">
                     </label></td>
             </tr>
             <td>
-                <tr>
-                    <td>
-                        <label>
-                            Gender:
-                            <input type="text" formControlName="gender">
-                        </label>
-                    </td>
-
-                </tr>
+              
 
                 <button type="submit">Submit Form</button>
         </table>
@@ -58,8 +50,7 @@
         <table>
             <tr>
                 <td>UserName:<label>
-
-                        <input type="text" formControlName="userName">
+                        <input #siusername type="text" formControlName="userName">
                     </label></td>
             </tr>
 
@@ -68,13 +59,15 @@
                 <td>
                     <label>
                         Password:
-                        <input type="text" formControlName="password">
+                        
+                        <input #sipassword type="text" formControlName="password">
                     </label>
                 </td>
 
             </tr>
 
-                <button type="submit">Submit Form</button>
+                <button (clidk)='processSignIn()' >Login</button>
+                {{errorMessage }}
         </table>
      
     </div>

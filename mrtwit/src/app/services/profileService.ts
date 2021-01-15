@@ -4,23 +4,25 @@ import { HttpClient } from '@angular/common/http';
 import { UserProfile } from '../models/user/UserProfile';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ProfileInfo } from '../models/user/ProfileInfo';
+import { UserService } from './userService';
 
 @Injectable({providedIn:'root'})
 export  class ProfileService 
 {
 
-constructor (private http:HttpClient)
+constructor (private http:HttpClient, private userService:UserService)
 {
     console.log("inside ctor profile");
 
 }
 
  getProfile(){
-     console.log("inside get profile");
-var url = environment.mrtwit_api_base_url + 'profile/ba57c315-eb16-47c1-91ba-6bf08e394a36'
+     console.log("inside get profile",this.userService.loggedInUser.userId);
+var url = environment.mrtwit_api_base_url + 'profile/' + this.userService.loggedInUser.userId;
 var response =  this.http.get(url);
 return response;
 }
+
 
 
 getProfileById(userId:string){

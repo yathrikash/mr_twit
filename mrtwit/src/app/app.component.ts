@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Session } from './models/user/Session';
 import { UserService } from './services/userService';
 
 @Component({
@@ -15,7 +16,12 @@ export class AppComponent {
 
 
   }
+  signout()
+  {
 
+    this.userService.loggedInUser = new Session();
+    
+  }
   isSiggnedIn()
   {
     return this.userService.loggedInUser !=  null && this.userService.loggedInUser.authKey != undefined   && this.userService.loggedInUser.authKey != null &&  this.userService.loggedInUser.authKey.length > 0;
